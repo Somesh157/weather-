@@ -2,11 +2,18 @@ import express from 'express';
 import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config ({ path: '.env'});
+import cors from 'cors';
+
 
 const app = express();
 const port = 3000;
 
-// Use 'async' keyword in the route handler function
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.get('/v1/api', async (req, res) => {
   try {
     // Use 'await' to wait for the axios promise to resolve
